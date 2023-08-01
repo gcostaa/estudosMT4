@@ -16,10 +16,22 @@ para um mesmo método de teste.
 
 */
 
+/*
+ * Para executar :
+ * vendor/bin/phpunit --colors Teste
+ * Teste é o nome da pasta e o phpunir irá buscar o arquivo com nome de teste
+ */
+
 class AvaliadorTest extends TestCase
 {
 
+    private $leiloeiro;
 
+    public function criaAvaliador()
+    {
+        $this->leiloeiro = new Avaliador();
+    }
+    
     /**
      * @dataProvider leilaoOrdemCrescente
      * @dataProvider leilaoOrdemDECrescente
@@ -31,11 +43,11 @@ class AvaliadorTest extends TestCase
         //Configurando valores para o teste
         //Arrange - Given
       
-        $leiloeiro = new Avaliador();
+        $this->criaAvaliador();
 
-        $leiloeiro->avalia($leiao);
+        $this->leiloeiro->avalia($leiao);
 
-        $maiorValor = $leiloeiro->getMaiorValor();
+        $maiorValor = $this->leiloeiro->getMaiorValor();
 
         //Valido se é o resultado esperado
         //Assert - Then
@@ -53,11 +65,11 @@ class AvaliadorTest extends TestCase
     */
     public function testAvaliadorDeveEncontrarOMenorValor(Leilao $leiao){
 
-        $leiloeiro = new Avaliador();
+        $this->criaAvaliador();
 
-        $leiloeiro->avalia($leiao);
+        $this->leiloeiro->avalia($leiao);
 
-        $menorValor = $leiloeiro->getMenorValor();
+        $menorValor = $this->leiloeiro->getMenorValor();
 
         self::assertEquals(2000,$menorValor);
     }
@@ -69,10 +81,10 @@ class AvaliadorTest extends TestCase
     */
     public function testAvaliadorPegaOs3MaioresLances(Leilao $leiao){
 
-  
-        $leiloeiro = new Avaliador();
-        $leiloeiro->avalia($leiao);
-        $maiores = $leiloeiro->getMaioresLances();
+
+        $this->criaAvaliador();
+        $this->leiloeiro->avalia($leiao);
+        $maiores = $this->leiloeiro->getMaioresLances();
 
 
         static::assertCount(3,$maiores);
