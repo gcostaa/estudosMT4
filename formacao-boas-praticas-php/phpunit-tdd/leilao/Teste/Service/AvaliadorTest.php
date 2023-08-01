@@ -27,7 +27,11 @@ class AvaliadorTest extends TestCase
 
     private $leiloeiro;
 
-    public function criaAvaliador()
+    /*
+     * O setUp será um método que o phpunit irá executar sempre antes de realizar um teste
+     */
+
+    protected function setUp(): void
     {
         $this->leiloeiro = new Avaliador();
     }
@@ -42,8 +46,6 @@ class AvaliadorTest extends TestCase
 
         //Configurando valores para o teste
         //Arrange - Given
-      
-        $this->criaAvaliador();
 
         $this->leiloeiro->avalia($leiao);
 
@@ -65,8 +67,6 @@ class AvaliadorTest extends TestCase
     */
     public function testAvaliadorDeveEncontrarOMenorValor(Leilao $leiao){
 
-        $this->criaAvaliador();
-
         $this->leiloeiro->avalia($leiao);
 
         $menorValor = $this->leiloeiro->getMenorValor();
@@ -81,8 +81,6 @@ class AvaliadorTest extends TestCase
     */
     public function testAvaliadorPegaOs3MaioresLances(Leilao $leiao){
 
-
-        $this->criaAvaliador();
         $this->leiloeiro->avalia($leiao);
         $maiores = $this->leiloeiro->getMaioresLances();
 
