@@ -1,0 +1,48 @@
+- Teste de unidade:
+
+Testa o código;
+
+Testar a menor unidade possível do sistema, como por exemplo um método;
+
+Verifica o funcionamento da menor unidade possível;
+
+Mais indicado;
+
+Rápido a ser executado.
+
+- Teste de integração:
+
+Testes que valida a funcionalidade do código com um sistema externo;
+
+Testar por exemplo a persistência com o banco de dados, SMTP e afins.
+
+- Teste E2E/Ponta a Ponta:
+
+Testa o sistema acessando ele, verificando as telas, preenchendo formulários e afins;
+
+Feito em ambiente controlado (banco de teste por exemplo);
+
+Infelizmente mais comum;
+
+São lentos.
+
+
+TESTES AUTOMATIZADOS
+
+Existem 3 partes em um teste automatizado.
+1- Onde criamos o cenário. Exemplo: criando variáveis, setando valores para testes nos cript;
+2- Executamos as funções ou o código em si com base nestes valores;
+3- Validamos se o valor é esperado;
+
+https://martinfowler.com/bliki/GivenWhenThen.html
+
+Instalando o php unit:
+https://cursos.alura.com.br/course/phpunit-tdd/task/56594
+
+Classes de equivalência:
+
+Para que tenhamos limites e objetividade em nossos testes, as classes de equivalência são usadas
+para dividirmos a entrada ou dados da unidade testada em grupos, onde cada grupo terá seu respectivo
+valor possível. Devemos testar somente um valor de cada grupo para garantir a funcionalidade.
+
+https://medium.com/revista-tspi/t%C3%A9cnica-de-teste-particionamento-de-equival%C3%AAncia-d32a7d689d82
