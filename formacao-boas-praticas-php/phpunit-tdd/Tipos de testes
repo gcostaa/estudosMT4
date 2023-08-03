@@ -46,3 +46,12 @@ para dividirmos a entrada ou dados da unidade testada em grupos, onde cada grupo
 valor possível. Devemos testar somente um valor de cada grupo para garantir a funcionalidade.
 
 https://medium.com/revista-tspi/t%C3%A9cnica-de-teste-particionamento-de-equival%C3%AAncia-d32a7d689d82
+
+
+Entendendo o TDD:
+
+TDD -> Teste Driven Developement - Desenvolvimento guiado a testes
+
+Essa metodologia garante que os testes guiem o desenvolvimento, de modo que você deve testar cada nova função
+do software ao invés de desenvolver o refatorar muito código e testar somente no final. Dessa forma você garante
+que a aplicação está sempre funcionando e em caso de problemas terá maior visibilidade de qual etapa falho no teste
