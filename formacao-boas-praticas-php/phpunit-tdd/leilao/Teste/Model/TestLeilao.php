@@ -10,21 +10,42 @@ use PHPUnit\Framework\TestCase;
 class TestLeilao extends TestCase
 {
 
-    public function testLeiaoDeveReceberLances()
+    /**
+     * @dataProvider geraLances
+     */
+    public function testLeiaoDeveReceberLances(int $quantidadeDeLances,
+                                               Leilao $leilao,
+                                               array $valores)
+    {
+
+        static::assertCount($quantidadeDeLances,$leilao->getLances());
+
+        foreach ($valores as $i => $valorEsperado){
+
+            static::assertEquals($valorEsperado,$leilao->getLances()[$i]->getValor());
+
+        }
+        
+    }
+
+    public static function geraLances()
     {
 
         $joao = new Usuario("Joao");
         $maria = new Usuario("Maria");
 
-        $leiao = new Leilao('Civic 2008');
-        $leiao->recebeLance(new Lance($joao,2000));
-        $leiao->recebeLance(new Lance($maria,2500));
+        $leilaoComDoisLances = new Leilao('Civic 2008');
+        $leilaoComDoisLances->recebeLance(new Lance($joao,2000));
+        $leilaoComDoisLances->recebeLance(new Lance($maria,2500));
 
-        var_dump($leiao->getLances());
+        $leilao = new Leilao('Fusca 2008');
+        $leilao->recebeLance(new Lance($joao,2000));
 
-        static::assertCount(2,$leiao->getLances());
-        static::assertEquals(2000,$leiao->getLances()[0]->getValor());
-        static::assertEquals(2500,$leiao->getLances()[1]->getValor());
+        return [
+            [2, $leilaoComDoisLances, [2000,2500]],
+            [1, $leilao, [2000]]
+        ];
+
     }
 
 }
