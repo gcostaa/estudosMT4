@@ -28,6 +28,20 @@ class TestLeilao extends TestCase
         
     }
 
+    public function testLeilaoNaoDeveReceberLancesRepetidos()
+    {
+
+        $leilao = new Leilao('Civic 2008');
+        $joao = new Usuario("Joao");
+
+        $leilao->recebeLance(new Lance($joao,2000));
+        $leilao->recebeLance(new Lance($joao,2500));
+
+        //precisamos garantir que apenas o primeiro lance seja mantido
+        static::assertCount(1, $leilao->getLances());
+        static::assertEquals(2000, $leilao->getLances()[0]->getValor());
+    }
+    
     public static function geraLances()
     {
 
