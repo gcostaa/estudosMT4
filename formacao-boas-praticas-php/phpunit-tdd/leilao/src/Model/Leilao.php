@@ -20,7 +20,7 @@ class Leilao
         //garantindo que não tenha lances repetidos
 
 
-        if (!empty($this->lances) && $lance->getUsuario() == $this->lances[count($this->lances) -1]->getUsuario()){
+        if (!empty($this->lances) && $this->validaLanceRepetido($lance)){
             // O empty garanti que não esta fazio
             //paro a execução
             return;
@@ -37,5 +37,15 @@ class Leilao
     {
         
         return $this->lances;
+    }
+
+    /**
+     * @param Lance $lance
+     * @return bool
+     */
+    private function validaLanceRepetido(Lance $lance): bool
+    {
+        $ultimoLance = $this->lances[count($this->lances) - 1];
+        return $lance->getUsuario() == $ultimoLance->getUsuario();
     }
 }
