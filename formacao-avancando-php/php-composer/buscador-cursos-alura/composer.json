@@ -1,0 +1,16 @@
+{
+    "name": "gcostaa/buscador-cursos",
+    "description": "Projeto que busca os cursos no site da Alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Gustavo Costa",
+            "email": "gcostaa.arruda@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.7",
+        "symfony/dom-crawler":"6.3",
+        "symfony/css-selector": "^6.3"
+    }
+}
