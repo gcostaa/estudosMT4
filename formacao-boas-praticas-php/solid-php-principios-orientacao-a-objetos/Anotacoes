@@ -1,0 +1,164 @@
+- Coesão
+
+* Faz apenas o que faz sentido para o seu domínio;
+* Faz somente sua responsabilidade;
+* Executa ações somente de sua responsabilidade;
+
+- Encapsulamento
+
+* O que é importante é a ação e não como a ação é feita
+
+- Acoplamento
+
+* Quando uma classe depende de outra classe para funcionar;
+
+* Não é algo necessáriamente ruim, em dados momentos ele é necessário, todavia,
+o ideal é que a classe dependa de coisas mais estáveis e que não vá mudar com
+muita frequência.
+
+--------------------------------------------------
+
+-- Single responsibility - Responsabilidade única
+
+"Só porque você pode, só porque você consegue, não significa que você deve"
+
+"Uma classe só deveria ter um único motivo prara mudar"
+
+Exemplo: Uma mesma classe exibe seus dados e salva eles no banco de dados. Essa classe está
+ferindo o SRP, pois caso a forma como os dados são salvos mude, você deverá mudar a classe
+ou caso a forma como os dados são exibidos, a classe também deverá ser alterada.
+
+Isso aumenta a possibilidade de novos bugs
+
+Exemplo
+
+Veja o trecho de código abaixo, da classe curso:
+
+ public function receberFeedback(int $nota, ?string $depoimento): void
+    {
+        if ($nota < 9 && empty($depoimento)) {
+            throw new \DomainException('Depoimento obrigatório');
+        }
+
+        $this->feedbacks[] = [$nota, $depoimento];
+    }
+Caso a nota seja menor que 9 e o comentário esteja vazio, o feedback irá lançar um erro
+na classe cuuso. Isso esta errado pois o curso em si, permanece intáquito, independente de
+feedback ou não. Dessa forma o correto é separar o feedback em outra classe.
+
+--------------------------------------------------
+
+
+- Open Closed Principle (ocp)
+
+"Uma cicurgia de peito aberto não é necessária quando você irá colocar um casaco"
+
+"Entidades de sofware (classe, funções e afins) devem ser abertos para expansão
+e fechado para modificações"
+
+“Você deve ser capaz de estender um comportamento de uma classe sem a necessidade de modificá-lo."
+
+* Aberto quando é possível extender
+* Fechado se ele já pode ser utilizado em outras classes. Fechado para modificação
+* No exemplo abaixo permitira que novos cursos pontuaveis sejam criados
+
+Exemplo:
+
+Veja o código abaixo
+
+class CalculadorPontuacao
+{
+    public function recuperarPontuacao($conteudo)
+    {
+        if ($conteudo instanceof Curso) {
+            return 100;
+        } else if ($conteudo instanceof AluraMais) {
+            return $conteudo->minutosDeDuracao() * 2;
+        } else {
+            throw new \DomainException('Apenas Cursos e videos Alura+ possuem pontuações');
+        }
+    }
+}
+
+Essa classe possui grandes chances de crescer conforme novos cursos serem adicionados. Com isso, o que seria feito?
+Mais um IF? Não é interessante.
+
+Pense no ponto, ele pode ser implementado por outras classes, dessa forma ele pode ser uma interface
+
+interface Pontuavel
+{
+
+    public function recuperaPontuacao(): int;
+
+}
+
+Dessa forma, Cursos implementa Pontuavel, implementa o método e define que retorna 100, por exemplo.
+
+Isso ira permitir também que o método recuperarPontuacao sai disso:
+
+ public function recuperarPontuacao($conteudo)
+    {
+        if ($conteudo instanceof Curso) {
+            return 100;
+        } else if ($conteudo instanceof AluraMais) {
+            return $conteudo->minutosDeDuracao() * 2;
+        } else {
+            throw new \DomainException('Apenas Cursos e videos Alura+ possuem pontuações');
+        }
+    }
+
+
+Para isso:
+
+    public function recuperarPontuacao(Pontuavel $conteudo)
+    {
+
+        return $conteudo->recuperaPontuacao();
+
+
+    }
+
+Como os cursos implementam "Pontuavel", nos passamos a interface como parâmetro para que somente
+cursos que tenham a interface implementada possam ser calculados. Dessa forma, se um curso implementa
+a interface Pontuavel o método recuperaPontuacao definido na interface e consequentemente na classe
+será chamado.
+
+Observe como a classe que calculava os pontos, dificilmente precisará ser alterada no futuro. Apenas
+as classes de determinados cursos poderiam ser alteradas dependendo da mudança na regra de negócio.
+Mas também seria alteradas apenas por um motivo, respeitando o SRP.
+
+--------------------------------------------------
+
+- Liskov Substitution principle
+
+* Classes filhas nunca deveriam infrigir as definições de tipo da classe pai (base)
+
+* Classes derivadas devem respeitar imposições da mãe
+
+Exemplo:
+
+Imagina uma classe chamada Retangulo que irá calcula a área do retangulo (largura x altura). Sendo
+assim o método calcula que retorna um float é implementado calculado largura x altura, onde largura
+é um valor e altura outro (pois em um retangulo elas são diferentes)
+
+Agora imagina um quadrado, onde o calculo de sua área também é feito com base na largura x altura, porém
+sendo ele com valores de largura e altura iguais. Com isso na classe Quadrado, extendemos Retangulo e
+implementamos o método calcula que também retorna um float, porém calculando com largura e altura IGUAIS.
+
+Essa implementação não respeita o LSP, pois a classe pai (Retangulo) calcula a área com valores DIFERENTES,
+já a classe filha QUADRADO, por mais que respeite a assinatura (nome e retorno) calcula a área com valores
+IGUAIS.
+
+--------------------------------------------------
+
+Interface segregation principle
+
+* Uma classe pode ser forçada a depender métodos que ela não utilizará;
+
+--------------------------------------------------
+
+Dependency inversion principle
+
+* Abstrações não devem depender de implementações e sim ao contrário;
+
+
