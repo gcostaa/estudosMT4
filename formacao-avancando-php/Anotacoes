@@ -43,59 +43,59 @@ Instalamos uma versão do pacote 4.2
 
 Porém, precisamos rodar o composer install pra de fato add ele ao projeto e depois o update para atualizar o pacote
 
+- PSR4
+
+https://www.php-fig.org/psr/psr-4/
+
+A PSR4 é regular como o autoload de classes internas do projetos é realizada
+
+Basicamente existe um namespace raiz ou VENDOR NAMESPACE "Ex Alura\Projeto" onde definimos que
+este namespace raiz será apontado para a pasta /src do projeto. Logo a Classe
+"Usuario" terá o namespace Alura\Projeto\Usuario e estará na pasta /src/Usuario
+do projeto.
+
+Importante que o nome da classe senha o mesmo nome do namespace
+
+
+"autoload": {
+        "psr-4": {
+            "Alura\\BuscadorDeCursos\\": "src/"
+        }
+    }
+
+Vendor Namespace -> Alura\\BuscadorDeCursos\\
+
+Além disto, o "autoload" possui a chave "classmap" para mapear classes que
+não implementam o ps4 e a chave "files" para por exemplo mapear arquivos .php
+de funções
 
 
 
+- Usando ferramentas que não vão para produção
 
+Nem toda dependencia deve ir para produção. Por exemplo, o phpunit, framework para testes. Faz sentido
+ele ir para prod, não. Dessa forma é possível executar o comando abaixo para que o composer instale
+a dependencia apenas para ambiente de desenvolvimento.
 
+composer require --dev phpunit/phpunit ^10
 
+"require-dev": {
+        "phpunit/phpunit": "^10"
+    }
 
+Para instalar em um ambiente limpo apenas dependências de prod, basta:
 
+composer require --no-dev
 
+- Ferramentas instaladas pelo composer
 
+O composer armazena os executaveis de ferramentas em vendor/bin. O phpunit por ser uma ferramenta,
+possui um executavel neste diretorio
 
+- Ferramenta que válida se o código está dentro dos padrões de determinada FSR:
 
+https://github.com/squizlabs/PHP_CodeSniffer
 
+- Ferramenta que válida se O CÓDIGO ESTÁ CORRETO EM QUESTÃO DE INTERPRETAÇÃO:
 
-
-
-
-
-
-
-
-
-
-O composer.json define a estrutura do projeto.
-
-PS4 AUTOLOADER
-
-Essa PSR específica como deve ser utilizado o padrão de autoload. Basicamente existe o vendor (namespace principal) e o subnamespace.
-
-Exemplo:
-
-\<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
-
-Link para a https://www.php-fig.org/psr/psr-4/
-
-Exemplo 2:
-
-Onde eu tenho o namespace vendor como Alura/Classes e minha classe está no namespace Alura/Classes/Controller/Banco e o diretório base /src, isso significa que:
-
-Ao configurar no composer que Alura/Classes corresponde ao /src teremos:
-
-src/Controller/Banco.php
-
-Depois de realizarmos essa configuração basta realizarmos um dump-autoload
-
-PS C:\xampp\htdocs\alura\cursoComposer\buscador-de-cursos> composer dump-autoload
-Generating autoload files
-Generated autoload files
-Em um cenário de um projeto legado onde o mesmo não usa o namespace, podemos usar o classmap, como por exemplo:
-
-{ "autoload": { "classmap": ["src/", "lib/", "Something.php"] } }
-
-Podemos também usar a chave “files” que informa todos os arquivos que serão sempre usados.
-
-
-
+https://github.com/phan/phan
