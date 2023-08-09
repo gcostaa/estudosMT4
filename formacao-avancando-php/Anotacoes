@@ -1,0 +1,101 @@
+Composer:
+
+O que é o composer?
+
+O composer é um gerenciador de dependências. Ele não é como o yam ou apt do linux que instala no sistema operacional. O composer faz o download dessa dependência no escopo do projeto, por exemplo.
+
+Comando composer init usado para inicializar o composer.json, arquivo que irá conter as dependências do projeto e as configurações de autoload.
+
+
+Ondes o composer faz as buscas?
+
+Por padrão o composer busca em https://packagist.org/. Ele é o repositório central. PORÉM É IMPORTANTE RESSALTAR QUE ELE
+NÃO É O ÚNICO, É POSSÍVEL OBTER O PACOTE ATRAVÉS DE OUTRAS ORIGENS.
+
+
+INICIANDO O PROJETO
+
+- Inicialmente no projeto, identificamos que devido a necessidade de realizar uma requisição a um site
+http e ler o DOM do site, precisariamos de duas dependências, uma para realizar a requisição e outra
+para ler o elemento DOM do site.
+
+Sendo assim buscamos elas em: https://packagist.org/.
+
+Com isso localizamos https://packagist.org/packages/guzzlehttp/guzzle e https://packagist.org/packages/symfony/dom-crawler
+
+- Instalando o guzzle
+
+Executamos o comando "composer require guzzlehttp/guzzle" e o composer dentro da pasta vendor irá instalar
+todo o back do do guzzle e também suas dependencias.
+
+O comando composer install irá verificar o arquivo de composer.json e adicionar as novas dependências inseridas manualmente em “require”.
+
+O comando composer update irá atualizar as dependências.
+
+Exemplo:
+
+Instalamos uma versão do pacote 4.2
+
+ "require": {
+        "guzzlehttp/guzzle": "^7.3",
+        "symfony/dom-crawler":"^4.2"
+    }
+
+Porém, precisamos rodar o composer install pra de fato add ele ao projeto e depois o update para atualizar o pacote
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O composer.json define a estrutura do projeto.
+
+PS4 AUTOLOADER
+
+Essa PSR específica como deve ser utilizado o padrão de autoload. Basicamente existe o vendor (namespace principal) e o subnamespace.
+
+Exemplo:
+
+\<NamespaceName>(\<SubNamespaceNames>)*\<ClassName>
+
+Link para a https://www.php-fig.org/psr/psr-4/
+
+Exemplo 2:
+
+Onde eu tenho o namespace vendor como Alura/Classes e minha classe está no namespace Alura/Classes/Controller/Banco e o diretório base /src, isso significa que:
+
+Ao configurar no composer que Alura/Classes corresponde ao /src teremos:
+
+src/Controller/Banco.php
+
+Depois de realizarmos essa configuração basta realizarmos um dump-autoload
+
+PS C:\xampp\htdocs\alura\cursoComposer\buscador-de-cursos> composer dump-autoload
+Generating autoload files
+Generated autoload files
+Em um cenário de um projeto legado onde o mesmo não usa o namespace, podemos usar o classmap, como por exemplo:
+
+{ "autoload": { "classmap": ["src/", "lib/", "Something.php"] } }
+
+Podemos também usar a chave “files” que informa todos os arquivos que serão sempre usados.
+
+
+

@@ -10,11 +10,47 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/composer" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/phar-io/version" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/vendor/autoload.php" />
+    </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />
