@@ -2,12 +2,31 @@
 
 $artigos = [
 
+    [
         'Titulo' => 'Primeiros passos com Spring',
         'Conteudo' => <<<CONTEUDO
-            Na empresa onde trabalho começamos um Coding Dojo, que é basicamente uma reunião com programadores e
-            programadoras a fim de resolver desafios e aperfeiçoar as habilidades com algoritmos.
-           CONTEUDO,
+                Na empresa onde trabalho começamos um Coding Dojo, que é basicamente uma reunião com programadores e
+                programadoras a fim de resolver desafios e aperfeiçoar as habilidades com algoritmos.
+               CONTEUDO,
         'Link' => 'primeiros-passos-com-spring.html'
+    ],
+
+    [
+        'Titulo' => 'O que é Metodologia Ágil',
+        'Conteudo' => <<<CONTEUDO
+                Uma vez fui contratada por uma empresa que desenvolvia softwares e aplicativos para outras empresas.
+               CONTEUDO,
+        'Link' => 'o-que-e-metodologia-agil.html'
+    ],
+
+    [
+        'Titulo' => 'Como é o funil do Growth Hacking?',
+        'Conteudo' => <<<CONTEUDO
+                Minha amiga que possui um clube de assinaturas começou a utilizar o Growth Hacking após conhecer um pouco
+                mais sobre ele.
+               CONTEUDO,
+        'Link' => 'como-e-o-funil-do-growth-hacking.html'
+    ],
 ];
 
 ?>
@@ -24,45 +43,24 @@ $artigos = [
 <body>
     <div id="container">
         <h1>Meu Blog</h1>
-        <h2>
-            <a href="<?php echo $artigos['Link']?>">
-                <?php
-                echo $artigos['Titulo'];
-                ?>
-            </a>
-        </h2>
-        <p>
-            <?php
-            echo $artigos['Conteudo'];
-            ?>
-        </p>
-        <h2>
-            <a href="o-que-e-metodologia-agil.html">
-                O que é Metodologia Ágil?
-            </a>
-        </h2>
-        <p>
-            Uma vez fui contratada por uma empresa que desenvolvia softwares e aplicativos para outras empresas.
-        </p>
-        <h2>
-            <a href="como-e-o-funil-do-growth-hacking.html">
-                Como é o funil do Growth Hacking?
-            </a>
-        </h2>
-        <p>
-            Minha amiga que possui um clube de assinaturas começou a utilizar o Growth Hacking após conhecer um pouco
-            mais sobre ele.
-        </p>
 
+        <?php
 
-        <h2>
-            <a href="como-e-o-funil-do-growth-hacking.html">
-                Novo Posto
-            </a>
-        </h2>
-        <p>
-            xxxxx
-        </p>
+            foreach ($artigos as $artigo)
+            {?>
+                         <h2>
+                    <a href="<?php echo $artigo['Link']?>">
+                        <?php
+                        echo $artigo['Titulo'];
+                        ?>
+                </a>
+                </h2>
+                <p>
+                    <?php
+                    echo $artigo['Conteudo'];
+                    ?>
+                </p>
+            <?php } ?>
     </div>
 </body>
 
