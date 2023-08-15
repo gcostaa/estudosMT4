@@ -1,0 +1,74 @@
+- PDO PHP DATA OBJECT
+
+* Interface leve e consistente para acessar banco de dados em PHP
+* Utiliza drivers especifico para da banco de dados
+
+PDO Possui drivers a estes objetos:
+https://www.php.net/manual/pt_BR/pdo.drivers.php
+
+* PDO é uma interface para acessarmos diversos banco de dados
+
+::exec
+
+o exec irá retornar a quantidade de linha afetada pela query executada
+https://www.php.net/manual/pt_BR/pdo.exec.php
+
+::query
+
+Executa uma instrução, retornando como PDOStatement
+PDOStatement -> possui o método fetchall que irá retornar todas as linhas
+
+https://www.php.net/manual/pt_BR/class.pdostatement.php
+https://www.php.net/manual/pt_BR/pdostatement.fetchall.php
+
+O fetchall irá retornar o array onde cada indice se trata de um registro
+na base e dentro de cada indice haverá um outro array onde é possível acessar
+o elemento tando pelo indice numerico ou nome.
+
+$result = $statement->fetchAll();
+
+array(6) {
+  ["id"]=>
+  int(1)
+  [0]=>
+  int(1)
+  ["name"]=>
+  string(7) "Gustavo"
+  [1]=>
+  string(7) "Gustavo"
+  ["birth_date"]=>
+  string(10) "1999-06-05"
+  [2]=>
+  string(10) "1999-06-05"
+}
+
+Exemplo: [0]['nome'] ouuuu [0][0]
+
+Todavia é possível alterar a forma de exibição do fetchall através da parâmetrização do método
+disponível em:
+
+https://www.php.net/manual/en/pdostatement.fetch.php
+
+Como podemos ver o parâmetro PDO::FETCH_ASSOC irá fazer com que o nome do indice
+seja o mesmo nome da coluna, conforme abaixo
+
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+array(1) {
+  [0]=>
+  array(3) {
+    ["id"]=>
+    int(1)
+    ["name"]=>
+    string(7) "Gustavo"
+    ["birth_date"]=>
+    string(10) "1999-06-05"
+  }
+}
+
+
+Também existe o FETCH_CLASS. Basicamente ele irá esperar um argumento que deve ser uma classe, onde
+caso os atributos da classe TENHA OS MESMOS NOMES de atributos da tabela, ele irá instanciar um objeto
+já com os dados configurados.
+
+Quando você deseja obter apenas uma linha, você pode usar o "fetch" ao invés do fetchall
