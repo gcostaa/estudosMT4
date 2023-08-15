@@ -107,4 +107,23 @@ Saida:
 
 Gustavo
 
+PREPARE
+
+O prepare irá "preparar" a query antes de sua execução no banco de dados. O prepare
+do PHP poderá escapar caracteres incorretos ou até mesmo tentativas de SQL INJECTIONS.
+
+bindValue
+
+$sqlInsert = "INSERT INTO students (name, birth_date) VALUES (?,?);";
+
+Após usar "?" você deve usar o bindvalue para injetar o valor desejado
+
+$statement->bindValue(1, $student->name());
+$statement->bindValue(2, $student->birthDate()->format('Y-m-d'));
+
+execute
+
+O execute irá pegar o statement preparado e com os valores configurados e executar, retornando
+um verdadeiro ou falso
+
 
