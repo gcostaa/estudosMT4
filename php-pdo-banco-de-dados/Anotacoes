@@ -121,6 +121,13 @@ Após usar "?" você deve usar o bindvalue para injetar o valor desejado
 $statement->bindValue(1, $student->name());
 $statement->bindValue(2, $student->birthDate()->format('Y-m-d'));
 
+Também podemos usar ":name" como parâmetros no bindValue:
+
+$sqlInsert = "INSERT INTO students (name, birth_date) VALUES (:name,:niver);";
+$statement = $pdo->prepare($sqlInsert);
+$statement->bindValue(':name', $student->name());
+$statement->bindValue(':niver', $student->birthDate()->format('Y-m-d'));
+
 execute
 
 O execute irá pegar o statement preparado e com os valores configurados e executar, retornando
