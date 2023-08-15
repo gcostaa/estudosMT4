@@ -116,7 +116,7 @@ bindValue
 
 $sqlInsert = "INSERT INTO students (name, birth_date) VALUES (?,?);";
 
-Após usar "?" você deve usar o bindvalue para injetar o valor desejado
+Após usar "?" você deve usar o bindvalue para injetar o valor desejado (TANTO NO INSERT QUANTO SELECT E AFINS)
 
 $statement->bindValue(1, $student->name());
 $statement->bindValue(2, $student->birthDate()->format('Y-m-d'));
@@ -132,5 +132,13 @@ execute
 
 O execute irá pegar o statement preparado e com os valores configurados e executar, retornando
 um verdadeiro ou falso
+
+bindParam
+
+Passa o valor por referência
+
+bindParam x bindValue
+
+Um passo o valor por refência e outro gerá uma cópia (passa o valor)
 
 
