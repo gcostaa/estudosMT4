@@ -9,8 +9,8 @@ $pdo = new PDO("sqlite:$databasePath");
 
 $student = new Student(
     null,
-    'Gustavo',
-    new \DateTimeImmutable('1999-06-05')
+    'Paula',
+    new \DateTimeImmutable('1998-04-07')
 );
 
 $sqlInsert = "INSERT INTO students (name, birth_date) VALUES ('{$student->name()}','{$student->birthDate()->format('Y-m-d')}');";

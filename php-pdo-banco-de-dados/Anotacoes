@@ -21,6 +21,11 @@ PDOStatement -> possui o método fetchall que irá retornar todas as linhas
 https://www.php.net/manual/pt_BR/class.pdostatement.php
 https://www.php.net/manual/pt_BR/pdostatement.fetchall.php
 
+O QUE É IMPORTANTE ENTENDER SOBR EOS FETCH:
+
+Eles basicamente dentro de um laço de repetição, criam um ponteiro
+para próxima linha, sem a necessidade de criar um contator, por exemplo.
+
 O fetchall irá retornar o array onde cada indice se trata de um registro
 na base e dentro de cada indice haverá um outro array onde é possível acessar
 o elemento tando pelo indice numerico ou nome.
@@ -72,3 +77,34 @@ caso os atributos da classe TENHA OS MESMOS NOMES de atributos da tabela, ele ir
 já com os dados configurados.
 
 Quando você deseja obter apenas uma linha, você pode usar o "fetch" ao invés do fetchall
+
+FETCH
+
+//O FeTCH irá obter apenas uma linha
+/*Enquanto os dados do estudando for verdadeiro, ou seja, o statement retorna dados
+é instanciado um novo e exibida sua idade
+*/
+while ($studentData = $statement->fetch(PDO::FETCH_ASSOC)){
+
+    $student = new Student(
+        $studentData['id'],
+        $studentData['name'],
+        new DateTimeImmutable($studentData['birth_date'])
+    );
+
+    echo $student->age() . PHP_EOL;
+}
+
+fetchColumn
+
+O fetchColumn irá obter apenas uma coluna e retornar seu valor
+
+$statement = $pdo->query('SELECT * FROM students');
+
+var_dump($statement->fetchColumn(1));exit();
+
+Saida:
+
+Gustavo
+
+
