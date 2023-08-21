@@ -12,6 +12,8 @@ $repositoryStudent = new PdoStudentRepository($connection);
 //Inicia uma transação
 $connection->beginTransaction();
 
+try {
+
 $student = new Student(
     null,
     "Gustavo",
@@ -26,7 +28,15 @@ $student2 = new Student(
     new DateTimeImmutable("1999-05-06")
 );
 
+
 $repositoryStudent->save($student2);
 
 //Encerra a transação
-$connection->commit();
+    $connection->commit();
+
+//Como o prepare retorna false em caso de problema, podemos validar a execução desta forma
+}catch (PDOException $e){
+    echo $e->getMessage(). PHP_EOL;
+    $connection->rollBack();
+}
+
