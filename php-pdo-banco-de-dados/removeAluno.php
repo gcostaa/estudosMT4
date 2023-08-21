@@ -5,6 +5,8 @@ use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
 
 require_once 'vendor/autoload.php';
 
+// IMPLEMENTAÇÃO CORRETA EM src/Infra/Repo/PdoStudentRepository
+
 $pdo = ConnectionCreator::createConnection();
 
 $statement = $pdo->prepare('DELETE FROM Students WHERE id = :id_estudante;');

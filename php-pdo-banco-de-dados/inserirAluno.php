@@ -5,6 +5,8 @@ use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
 
 require_once 'vendor/autoload.php';
 
+// IMPLEMENTAÇÃO CORRETA EM src/Infra/Repo/PdoStudentRepository
+
 $pdo = ConnectionCreator::createConnection();
 
 $student = new Student(

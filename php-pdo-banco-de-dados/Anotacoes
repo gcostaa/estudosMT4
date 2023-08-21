@@ -141,4 +141,9 @@ bindParam x bindValue
 
 Um passo o valor por refência e outro gerá uma cópia (passa o valor)
 
+DIFERENÇA ENTRE O EXECUTE E O QUERY
+
+O query do statement executa a instrução SQL porém sem trata-la, voce precisaria tratar ela na mão.
+Já o execute recebe um prepared statement, já tratado
+
 

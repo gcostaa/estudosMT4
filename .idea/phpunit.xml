@@ -4,6 +4,9 @@
     <option name="directories">
       <list>
         <option value="$PROJECT_DIR$/formacao-boas-praticas-php/phpunit-tdd/leilao/tests" />
+        <option value="$PROJECT_DIR$/formacao-boas-praticas-php/testes-phpunit/phpunit-tdd/leilao/tests" />
+        <option value="$PROJECT_DIR$/formacao-avancando-php/php-composer/buscador-cursos-alura/tests" />
+        <option value="$PROJECT_DIR$/formacao-boas-praticas-php/refatoracao-php-boas-praticas-codigo/google-crawler-projeto-inicial/tests" />
       </list>
     </option>
   </component>

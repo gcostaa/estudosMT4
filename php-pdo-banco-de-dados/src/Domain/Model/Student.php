@@ -2,6 +2,8 @@
 
 namespace Alura\Pdo\Domain\Model;
 
+use function PHPUnit\Framework\isNull;
+
 class Student
 {
     private ?int $id;
@@ -13,6 +15,17 @@ class Student
         $this->id = $id;
         $this->name = $name;
         $this->birthDate = $birthDate;
+    }
+
+    public function defineId(int $id): void
+    {
+
+        if(!isNull($id)) {
+            throw new \DomainException('Você so pode definir o ID uma vez');
+        }
+
+        $this->id = $id;
+
     }
 
     public function id(): ?int
