@@ -20,7 +20,7 @@ class Student
     public function defineId(int $id): void
     {
 
-        if(!isNull($id)) {
+        if(is_null($id)) {
             throw new \DomainException('Você so pode definir o ID uma vez');
         }
 

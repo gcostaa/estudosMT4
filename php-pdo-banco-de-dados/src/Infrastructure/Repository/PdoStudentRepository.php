@@ -11,7 +11,7 @@ class PdoStudentRepository implements StudentRepository
 
     private \PDO $connection;
 
-    public function __construct(PDO $pdo)
+    public function __construct(\PDO $pdo)
     {
         $this->connection = $pdo;
     }
