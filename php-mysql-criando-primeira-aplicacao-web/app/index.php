@@ -1,61 +1,44 @@
 <?php
 
-$produtosCafe = [
+use Loja\App\Model\Produto;
 
-        [
-                "nome"=>"Café Cremoso",
-                "descricao" => "Café cremoso irresistivelmente suave e que envolve seu paladar",
-                "preco" => "R$ 5.00",
-                "imagem" => "img/cafe-cremoso.jpg"
-        ],
+require_once "vendor/autoload.php";
+require "conexaoBD.php";
 
-        [
-                "nome"=>"Café com Leite",
-                "descricao" => "A harmonia perfeita do café e do leite, uma experiência reconfortante",
-                "preco" => "R$ 2.00",
-                "imagem" => "img/cafe-com-leite.jpg"
-        ],
+$produtosCafeList = [];
+$produtosAlmocoList = [];
 
-    [
-        "nome"=>"Cappuccino",
-        "descricao" => "Café suave, leite cremoso e uma pitada de sabor adocicado",
-        "preco" => "R$ 7.00",
-        "imagem" => "img/cappuccino.jpg"
-    ],
+$statement = $pdo->prepare("SELECT * FROM produtos where tipo = 'Café' ORDER BY preco");
+$statement->execute();
+$produtosDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    [
-        "nome"=>"Café Gelado",
-        "descricao" => "Café gelado refrescante, adoçado e com notas sutis de baunilha ou caramelo.",
-        "preco" => "R$ 5.00",
-        "imagem" => "img/cafe-gelado.jpg"
-    ]
+foreach ($produtosDataList as $produtos) {
 
-];
+        $produtosCafeList[] = new Produto(
+            null,
+            $produtos['tipo'],
+            $produtos['nome'],
+            $produtos['descricao'],
+            $produtos['imagem'],
+            $produtos['preco']
+        );
+}
 
-$produtosAlmoco = [
+$statement = $pdo->prepare("SELECT * FROM produtos where tipo = 'Almoço' ORDER BY preco");
+$statement->execute();
+$produtosDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        [
-            "nome"=>"Bife",
-            "descricao" => "Bife, arroz com feijão e uma deliciosa batata frita",
-            "preco" => "R$ 27.00",
-            "imagem" => "img/bife.jpg"
-        ],[
-            "nome"=>"Frango",
-            "descricao" => "Saboroso frango à milanesa com batatas fritas, salada de repolho e molho picante",
-            "preco" => "R$ 23.00",
-            "imagem" => "img/prato-frango.jpg"
-        ],[
-            "nome"=>"Filé de peixe",
-            "descricao" => "Filé de peixe salmão assado, arroz, feijão verde e tomate.",
-            "preco" => "R$ 24.00",
-            "imagem" => "img/prato-peixe.jpg"
-        ],[
-            "nome"=>"Fettuccine",
-            "descricao" => "Prato italiano autêntico da massa do fettuccine com peito de frango grelhado",
-            "preco" => "R$ 22.00",
-            "imagem" => "img/fettuccine.jpg"
-        ],
-];
+foreach ($produtosDataList as $produtos) {
+
+    $produtosAlmocoList[] = new Produto(
+        null,
+        $produtos['tipo'],
+        $produtos['nome'],
+        $produtos['descricao'],
+        $produtos['imagem'],
+        $produtos['preco']
+    );
+}
 
 ?>
 
@@ -90,16 +73,16 @@ $produtosAlmoco = [
             </div>
             <div class="container-cafe-manha-produtos">
                 <?php
-                foreach ($produtosCafe as $cafes):
+                foreach ($produtosCafeList as $cafes):
                 ?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?= $cafes['imagem']?>">
+                        <img src="<?php echo "img/".$cafes->getImagem()?>">
 
                     </div>
-                    <p><?= $cafes['nome']?></p>
-                    <p><?= $cafes['descricao']?></p>
-                    <p><?= $cafes['preco']?></p>
+                    <p><?= $cafes->getNome()?></p>
+                    <p><?= $cafes->getDescricao()?></p>
+                    <p><?= $cafes->getPreco()?></p>
                 </div>
                 <?php endforeach;?>
             </div>
@@ -112,19 +95,19 @@ $produtosAlmoco = [
 
             <div class="container-cafe-manha-produtos">
                 <?php
-                foreach ($produtosAlmoco as $almocos):?>
+                foreach ($produtosAlmocoList as $almocos):?>
                     <div class="container-produto">
                         <div class="container-foto">
-                            <img src="<?= $almocos['imagem']?>">
+                            <img src="<?php echo "img/".$almocos->getImagem()?>">
 
                         </div>
-                        <p><?= $almocos['nome']?></p>
-                        <p><?= $almocos['descricao']?></p>
-                        <p><?= $almocos['preco']?></p>
+                        <p><?= $almocos->getNome()?></p>
+                        <p><?= $almocos->getDescricao()?></p>
+                        <p><?= $almocos->getPreco()?></p>
                     </div>
                 <?php endforeach;?>
             </div>
-            
+
         </section>
     </main>
 </body>
