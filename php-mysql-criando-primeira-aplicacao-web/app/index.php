@@ -1,44 +1,13 @@
 <?php
 
-use Loja\App\Model\Produto;
+use Loja\App\Infra\Connection;
+use Loja\App\Repository\ProdutoRepository;
 
 require_once "vendor/autoload.php";
-require "conexaoBD.php";
 
-$produtosCafeList = [];
-$produtosAlmocoList = [];
-
-$statement = $pdo->prepare("SELECT * FROM produtos where tipo = 'Café' ORDER BY preco");
-$statement->execute();
-$produtosDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($produtosDataList as $produtos) {
-
-        $produtosCafeList[] = new Produto(
-            null,
-            $produtos['tipo'],
-            $produtos['nome'],
-            $produtos['descricao'],
-            $produtos['imagem'],
-            $produtos['preco']
-        );
-}
-
-$statement = $pdo->prepare("SELECT * FROM produtos where tipo = 'Almoço' ORDER BY preco");
-$statement->execute();
-$produtosDataList = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($produtosDataList as $produtos) {
-
-    $produtosAlmocoList[] = new Produto(
-        null,
-        $produtos['tipo'],
-        $produtos['nome'],
-        $produtos['descricao'],
-        $produtos['imagem'],
-        $produtos['preco']
-    );
-}
+$produtosRepositorio = new ProdutoRepository(Connection::connectionCreator());
+$produtosCafeList = $produtosRepositorio->opcoesCafe();
+$produtosAlmocoList = $produtosRepositorio->opcoesAlmoco();
 
 ?>
 
@@ -77,12 +46,12 @@ foreach ($produtosDataList as $produtos) {
                 ?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?php echo "img/".$cafes->getImagem()?>">
+                        <img src="<?php echo $cafes->getImagemDiretorio()?>">
 
                     </div>
                     <p><?= $cafes->getNome()?></p>
                     <p><?= $cafes->getDescricao()?></p>
-                    <p><?= $cafes->getPreco()?></p>
+                    <p><?= "R$".$cafes->getPrecoFormatado()?></p>
                 </div>
                 <?php endforeach;?>
             </div>
@@ -98,12 +67,12 @@ foreach ($produtosDataList as $produtos) {
                 foreach ($produtosAlmocoList as $almocos):?>
                     <div class="container-produto">
                         <div class="container-foto">
-                            <img src="<?php echo "img/".$almocos->getImagem()?>">
+                            <img src="<?php echo $almocos->getImagemDiretorio()?>">
 
                         </div>
                         <p><?= $almocos->getNome()?></p>
                         <p><?= $almocos->getDescricao()?></p>
-                        <p><?= $almocos->getPreco()?></p>
+                        <p><?= "R$".$almocos->getPrecoFormatado()?></p>
                     </div>
                 <?php endforeach;?>
             </div>

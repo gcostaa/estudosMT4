@@ -9,7 +9,7 @@ class Produto
     private string $nome;
     private string $descricao;
     private string $imagem;
-    private string $preco;
+    private float $preco;
 
     public function __construct(?int $id, string $tipo, string $nome, string $descricao, string $imagem, string $preco)
     {
@@ -41,14 +41,26 @@ class Produto
         return $this->descricao;
     }
 
-    public function getImagem(): string
+    private function getImagem(): string
     {
         return $this->imagem;
     }
 
-    public function getPreco(): string
+    private function getPreco(): float
     {
         return $this->preco;
+    }
+
+    public function getPrecoFormatado(): float
+    {
+
+        return number_format($this->getPreco(), 2);
+
+    }
+
+    public function getImagemDiretorio(): string
+    {
+        return "img/".$this->getImagem();
     }
 
 
