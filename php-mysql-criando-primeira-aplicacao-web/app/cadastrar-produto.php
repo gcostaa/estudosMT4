@@ -1,3 +1,31 @@
+<?php
+
+use Loja\App\Infra\Connection;
+use Loja\App\Model\Produto;
+use Loja\App\Repository\ProdutoRepository;
+
+require_once "vendor/autoload.php";
+
+
+if (isset($_POST['cadastro'])){
+
+    $produto = new Produto(
+
+        null,
+        $_POST['tipo'],
+        $_POST['nome'],
+        $_POST['descricao'],
+        $_POST['preco'],
+    );
+
+    $repo = new ProdutoRepository(Connection::connectionCreator());
+    $repo->salvar($produto);
+
+    header("Location: admin.php");
+}
+
+?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -24,7 +52,7 @@
         <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
     </section>
     <section class="container-form">
-        <form action="#">
+        <form method="post">
 
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required>
@@ -47,7 +75,7 @@
             <label for="imagem">Envie uma imagem do produto</label>
             <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">
 
-            <input type="submit" name="cadastro" class="botao-cadastrar" value="Cadastrar produto"/>
+            <input name="cadastro" type="submit" name="cadastro" class="botao-cadastrar" value="Cadastrar produto"/>
         </form>
     
     </section>
