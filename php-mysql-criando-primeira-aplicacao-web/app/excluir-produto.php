@@ -6,3 +6,5 @@ use Loja\App\Repository\ProdutoRepository;
 $repo = new ProdutoRepository(Connection::connectionCreator());
 
 $repo->deletar($_POST['id']);
+
+header("Location: admin.php");
