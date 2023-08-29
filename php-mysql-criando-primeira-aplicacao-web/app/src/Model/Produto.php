@@ -63,5 +63,47 @@ class Produto
         return "img/".$this->getImagem();
     }
 
+    private function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    private function setTipo(string $tipo): void
+    {
+        $this->tipo = $tipo;
+    }
+
+    private function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+    private function setDescricao(string $descricao): void
+    {
+        $this->descricao = $descricao;
+    }
+
+    private function setImagem(string $imagem): void
+    {
+        $this->imagem = $imagem;
+    }
+
+    private function setPreco(float $preco): void
+    {
+        $this->preco = $preco;
+    }
+
+    public function inicializa(array $dados): void
+
+    {
+
+           $this->setId($dados['id']);
+           $this->setTipo($dados['tipo']);
+           $this->setNome($dados['nome']);
+           $this->setDescricao($dados['descricao']);
+           $this->setPreco($dados['preco']);
+
+    }
+
 
 }

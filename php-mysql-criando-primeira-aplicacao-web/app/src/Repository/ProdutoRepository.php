@@ -15,7 +15,7 @@ class ProdutoRepository
         $this->pdo = $pdo;
     }
 
-    public function hidrataProdutos(array $produtos): array
+    private function hidrataProdutos(array $produtos): array
     {
 
         $produtosList = [];
@@ -34,6 +34,19 @@ class ProdutoRepository
         }
 
             return $produtosList;
+    }
+
+    private function retornaUmProduto(array $produto): Produto
+    {
+        return new Produto(
+
+            $produto['id'],
+            $produto['tipo'],
+            $produto['nome'],
+            $produto['descricao'],
+            $produto['preco'],
+            $produto['imagem']
+        );
     }
 
     public function opcoesCafe():array
@@ -94,5 +107,36 @@ class ProdutoRepository
         $statement->execute();
 
     }
+
+    public function buscarProduto(int $id): Produto
+    {
+
+        $statement = $this->pdo->prepare("SELECT * FROM produtos WHERE id= :id;");
+        $statement->bindValue("id",$id);
+        $statement->execute();
+        $produto = $statement->fetch(PDO::FETCH_ASSOC);
+        return $this->retornaUmProduto($produto);
+    }
+
+    public function atualizaProduto(Produto $produto): bool
+    {
+
+        $sqlUpdate = <<<SQL
+UPDATE produtos set tipo= :tipo,nome= :nome,descricao= :descricao,preco= :preco
+                      WHERE id= :id;
+SQL;
+
+        $statement = $this->pdo->prepare($sqlUpdate);
+        $statement->bindValue("id",$produto->getId());
+        $statement->bindValue("tipo",$produto->getTipo());
+        $statement->bindValue("nome",$produto->getNome());
+        $statement->bindValue("descricao",$produto->getDescricao());
+        $statement->bindValue("preco",$produto->getPrecoFormatado());
+        var_dump($statement);
+        $execucao = $statement->execute();
+
+        return $execucao;
+    }
+
 
 }

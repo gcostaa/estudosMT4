@@ -15,7 +15,7 @@ if (isset($_POST['cadastro'])){
         $_POST['tipo'],
         $_POST['nome'],
         $_POST['descricao'],
-        $_POST['preco'],
+        $_POST['preco']
     );
 
     $repo = new ProdutoRepository(Connection::connectionCreator());

@@ -57,7 +57,7 @@ $opcoes = $produtoRepositorio->buscarTodos();
         <td><?= $prod->getTipo()?></td>
         <td><?= $prod->getDescricao()?></td>
         <td><?= "R$ ".$prod->getPrecoFormatado()?></td>
-        <td><a class="botao-editar" href="editar-produto.html">Editar</a></td>
+        <td><a class="botao-editar" href="editar-produto.php?id=<?php echo $prod->getId()?>">Editar</a></td>
         <td>
           <form action="excluir-produto.php" method="post">
               <input type="hidden" name="id" value="<?= $prod->getId()?>">
