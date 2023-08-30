@@ -43,6 +43,7 @@ $produtosAlmocoList = $produtosRepositorio->opcoesAlmoco();
             <div class="container-cafe-manha-produtos">
                 <?php
                 foreach ($produtosCafeList as $cafes):
+
                 ?>
                 <div class="container-produto">
                     <div class="container-foto">
