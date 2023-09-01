@@ -33,7 +33,7 @@ $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
             <a class="logo" href="index.php"></a>
 
             <div class="cabecalho__icones">
-                <a href="pages/enviar-video.php" class="cabecalho__videos"></a>
+                <a href="formulario.php" class="cabecalho__videos"></a>
                 <a href="./pages/login.html" class="cabecalho__sair">Sair</a>
             </div>
         </nav>
@@ -60,7 +60,7 @@ $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
                 <img src="./img/logo.png" alt="logo canal alura">
                 <h3><?php echo $video['title']?></h3>
                 <div class="acoes-video">
-                    <a href="./pages/enviar-video.php?id=<?php echo $video['id'];?>">Editar</a>
+                    <a href="formulario.php?id=<?php echo $video['id'];?>">Editar</a>
                     <a href="remover-video.php?id=<?php echo $video['id'];?>">Excluir</a>
                 </div>
             </div>
