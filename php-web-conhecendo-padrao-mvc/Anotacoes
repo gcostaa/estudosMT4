@@ -2,3 +2,11 @@ O CURSO https://cursos.alura.com.br/course/php-model-view-controller está desat
 forma, estou realizando sua versão atualizada:
 https://cursos.alura.com.br/course/php-web-conhecendo-padrao-mvc
 
+filter_input
+
+Irá filtrar, validar ou higienizar determinado input. Retorna false caso falhe
+em alguns destes processos.
+
+onde parei: eu preciso concluir o desafio de conseguir criar a edição. Atualmente o enviar-video.php ja
+reconhece o vídeo que esta sendo editado e preenche os campos, agora preciso conseguir mandar o id do video quando
+clica em enviar para o arquivo novo-video.php para conseguir realizar o update
