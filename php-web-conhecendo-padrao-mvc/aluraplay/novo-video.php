@@ -10,7 +10,7 @@ $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
 
     if (($url && $title) === false) {
 
-        header('Location:index.php?status=error');
+        header('Location:listagemCursos.php?status=error');
         exit();
     }
 
@@ -22,9 +22,9 @@ $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
     $stmt->bindValue(2,$_POST['titulo']);
 
     if ($stmt->execute() === false) {
-        header('Location:index.php?status=error');
+        header('Location:/?status=error');
     }else{
-        header('Location:index.php?status=success');
+        header('Location:/?status=success');
     }
 
 

@@ -1,72 +1,30 @@
 <?php
 
-$pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
-    'gustavo',
-    'mT4SeG@s2s');
+if (!array_key_exists('PATH_INFO',$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
 
- $stmt = $pdo->prepare("SELECT * FROM videos");
- $stmt->execute();
- $videoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    require_once 'listagemCursos.php';
 
-?>
+} elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
 
-<!DOCTYPE html>
-<html lang="pt-br">
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/estilos.css">
-    <link rel="stylesheet" href="./css/flexbox.css">
-    <title>AluraPlay</title>
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-</head>
+        require_once 'formulario.php';
 
-<body>
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    <header>
+        require_once 'novo-video.php';
+    }
+} elseif ($_SERVER['PATH_INFO'] === '/editar-video') {
 
-        <nav class="cabecalho">
-            <a class="logo" href="index.php"></a>
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-            <div class="cabecalho__icones">
-                <a href="formulario.php" class="cabecalho__videos"></a>
-                <a href="./pages/login.html" class="cabecalho__sair">Sair</a>
-            </div>
-        </nav>
+        require_once 'formulario.php';
 
-    </header>
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    <ul class="videos__container" alt="videos alura">
+        require_once 'editar-video.php';
+    }
+ }elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
 
-        <?php
-            foreach ($videoList as $video):
-        ?>
-        <?php
-                if (!str_starts_with($video['url'],'http')) {
-
-                    $video['url'] = 'https://www.youtube.com/embed/AWVQVtaV9Oo?si=pYoXobY1E5giDc-h';
-                }
-        ?>
-        <li class="videos__item">
-            <iframe width="100%" height="72%" src="<?php echo $video['url'];?>"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-            <div class="descricao-video">
-                <img src="./img/logo.png" alt="logo canal alura">
-                <h3><?php echo $video['title']?></h3>
-                <div class="acoes-video">
-                    <a href="formulario.php?id=<?php echo $video['id'];?>">Editar</a>
-                    <a href="remover-video.php?id=<?php echo $video['id'];?>">Excluir</a>
-                </div>
-            </div>
-        </li>
-        <?php endforeach;?>
-    </ul>
-</body>
-
-</html>
+    require_once 'remover-video.php';
+}

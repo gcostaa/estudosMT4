@@ -11,7 +11,7 @@ $title = filter_input(INPUT_POST,'titulo');
 
 if (($url && $title) === false) {
 
-    header('Location:index.php?status=error');
+    header('Location:listagemCursos.php?status=error');
     exit();
 }
 
@@ -22,7 +22,7 @@ $stmt->bindValue(2,$title);
 $stmt->bindValue(3,$id);
 
 if ($stmt->execute() === false) {
-    header('Location:index.php?status=error');
+    header('Location:listagemCursos.php?status=error');
 }else{
-    header('Location:index.php?status=success');
+    header('Location:listagemCursos.php?status=success');
 }

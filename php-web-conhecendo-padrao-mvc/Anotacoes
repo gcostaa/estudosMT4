@@ -10,3 +10,19 @@ em alguns destes processos.
 onde parei: eu preciso concluir o desafio de conseguir criar a edição. Atualmente o enviar-video.php ja
 reconhece o vídeo que esta sendo editado e preenche os campos, agora preciso conseguir mandar o id do video quando
 clica em enviar para o arquivo novo-video.php para conseguir realizar o update
+
+ACIMA OK
+
+FRONT CONTROLLER
+
+Será o módulo do sistema responsável por receber todas requisições e distribui-las.
+
+https://www.devmedia.com.br/padroes-de-projetos-introducao-aos-padroes-front-controller-e-command/30644
+
+Basicamente a manipulador web irá receber a informação HTTP de qual recurso e verbo é solictado, e destinará
+ao objeto mais indicado.
+
+onde parei: assistir novamente a aula "front controller" para fixar o conhecimento
+
+ACIMA OK
+

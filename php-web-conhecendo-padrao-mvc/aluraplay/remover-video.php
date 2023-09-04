@@ -11,9 +11,9 @@ $stmt = $pdo->prepare($sql);
 $stmt->bindValue(1,$id);
 
 if ($stmt->execute() === false) {
-    header('Location:index.php?sucesso=0');
+    header('Location:listagemCursos.php?sucesso=0');
 }else{
-    header('Location:index.php?sucesso=1');
+    header('Location:listagemCursos.php?sucesso=1');
 }
 
 
