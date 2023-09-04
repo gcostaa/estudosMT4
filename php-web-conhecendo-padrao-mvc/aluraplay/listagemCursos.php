@@ -29,7 +29,7 @@ $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
             <div class="descricao-video">
-                <img src="./img/logo.png" alt="logo canal alura">
+                <img src="img/logo.png" alt="logo canal alura">
                 <h3><?php echo $video['title']?></h3>
                 <div class="acoes-video">
                     <a href="/editar-video?id=<?php echo $video['id'];?>">Editar</a>
