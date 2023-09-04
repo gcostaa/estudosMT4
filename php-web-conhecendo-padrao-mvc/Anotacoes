@@ -26,3 +26,8 @@ onde parei: assistir novamente a aula "front controller" para fixar o conhecimen
 
 ACIMA OK
 
+Importante sobre a primeira parte do frontcontroller
+
+Nos criamos "namespaces" internos, onde um clique em um botão, dependendo do verbo http (get ou post)
+e a rota acessada, um .php diferente é requerido. A rota "/novo-video" por exemplo não existe, dessa forma
+o index.php é carregado, onde nele há a lógica do controller
