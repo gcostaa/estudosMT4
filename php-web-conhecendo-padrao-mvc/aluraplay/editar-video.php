@@ -1,5 +1,8 @@
 <?php
 
+use Alura\Mvc\Entity\Video;
+use Alura\Mvc\Repository\VideoRepository;
+
 $pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
     'gustavo',
     'mT4SeG@s2s');
@@ -15,14 +18,15 @@ if (($url && $title) === false) {
     exit();
 }
 
-$update = 'UPDATE videos SET url=?, title=? where id=?';
-$stmt = $pdo->prepare($update);
-$stmt->bindValue(1,$url);
-$stmt->bindValue(2,$title);
-$stmt->bindValue(3,$id);
+$video = new Video($url,$title);
+$video->setId($id);
 
-if ($stmt->execute() === false) {
-    header('Location:listagemCursos.php?status=error');
+$repository = new VideoRepository($pdo);
+$status = $repository->update($video);
+
+
+if ($status === false) {
+    header('Location:/?status=error');
 }else{
-    header('Location:listagemCursos.php?status=success');
+    header('Location:/?status=success');
 }
