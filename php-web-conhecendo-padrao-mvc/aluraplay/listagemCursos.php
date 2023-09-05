@@ -1,16 +1,3 @@
-<?php
-
-use Alura\Mvc\Repository\VideoRepository;
-
-$pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
-    'gustavo',
-    'mT4SeG@s2s');
-
-$repository = new VideoRepository($pdo);
-$videoList = $repository->all();
-
-?>
-
 <?php require_once 'inicioHtml.php'?>
 
     <ul class="videos__container" alt="videos alura">

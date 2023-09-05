@@ -95,4 +95,32 @@ class VideoRepository
     }
 
 
+    public function single(int $id): Video
+    {
+
+        $stmt = $this->pdo->prepare("SELECT * FROM videos WHERE id = :id");
+        $stmt->bindValue('id',$id);
+        $stmt->execute();
+        $videoList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->hidrataUmVideo($videoList);
+
+    }
+
+    private function hidrataUmVideo(array $videosList): Video
+    {
+        $video = 0;
+
+        foreach ($videosList as $videoData) {
+
+            $video = new Video($videoData['url'],$videoData['title']);
+            $video->setId($videoData['id']);
+
+        }
+
+        return $video;
+
+    }
+
+
 }

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 $id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
 
@@ -41,6 +41,8 @@ if (isset($_GET['id'])) {
                     <input name="titulo" class="campo__escrita" required placeholder="Neste campo, dê o nome do vídeo"
                         id='titulo' value="<?php echo $video['title'];?>"/>
                 </div>
+
+                <!--SETA O ID PARA O POST-->
                 <input type="hidden" name="id" value="<?php if (isset($_GET['id'])) {echo $_GET['id'];}?>">
                 <input class="formulario__botao" type="submit" value="Enviar" />
         </form>
