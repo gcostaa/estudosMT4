@@ -32,3 +32,5 @@ Nos criamos "namespaces" internos, onde um clique em um botão, dependendo do ve
 e a rota acessada, um .php diferente é requerido. A rota "/novo-video" por exemplo não existe, dessa forma
 o index.php é carregado, onde nele há a lógica do controller. Dessa forma, não é que o novo do formulário, por exemplo,
 é "/editar-video", mas sim que direiconamos para esse logo, onde na idenx tratamos de importar o .php correto
+
+FIM :)
