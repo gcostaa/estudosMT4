@@ -1,6 +1,13 @@
 <?php
 
-use Alura\Mvc\Controller\VideoListController;
+use Alura\Mvc\Controller\{
+    Controller,
+    DeleteVideoController,
+    EditVideoController,
+    NewVideoController,
+    NewVideoFormController,
+    VideoFormController,
+    VideoListController};
 use Alura\Mvc\Repository\VideoRepository;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -14,40 +21,38 @@ $videoRepository = new VideoRepository($pdo);
 if (!array_key_exists('PATH_INFO',$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
 
     $controller = new VideoListController($videoRepository);
-    $controller->processaRequisicaoListagemGeral();
 
 
 } elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-        $controller = new VideoListController($videoRepository);
-        $controller->processaRequisicaoParaUmNovoVideo();
+        $controller = new NewVideoFormController($videoRepository);
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-        $controller = new VideoListController($videoRepository);
-        $controller->processaRequisicaoParaAdicionarUmNovoVideo();
+        $controller = new NewVideoController($videoRepository);
 
     }
 } elseif ($_SERVER['PATH_INFO'] === '/editar-video') {
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-        $controller = new VideoListController($videoRepository);
-        $controller->processaRequisicaoDoformularioParaEditarUmVideo();
+        $controller = new VideoFormController($videoRepository);
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $controller = new VideoListController($videoRepository);
-        $controller->processaRequisicaoParaEditarUmVideoExistente();
+        $controller = new EditVideoController($videoRepository);
 
     }
  }elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
 
-    $controller = new VideoListController($videoRepository);
-    $controller->processaRequisicaoParaExcluirUmVideo();
+    $controller = new DeleteVideoController($videoRepository);
 
 }else {
     http_response_code(404);
 }
+
+/** @var Controller $controller */
+
+$controller->processaRequisicao();
