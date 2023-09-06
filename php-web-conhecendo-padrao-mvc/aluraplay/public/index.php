@@ -1,55 +1,33 @@
 <?php
 
+use Alura\Mvc\Infrastructure\Connection;
 use Alura\Mvc\Controller\{
-    Controller,
-    DeleteVideoController,
-    EditVideoController,
-    NewVideoController,
-    NewVideoFormController,
-    VideoFormController,
-    VideoListController};
+    Controller};
 use Alura\Mvc\Repository\VideoRepository;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-$pdo = new PDO('mysql:host=192.168.100.37;dbname=aluraplay',
-    'gustavo',
-    'mT4SeG@s2s');
+$pdo = Connection::connectionCreator();
 
 $videoRepository = new VideoRepository($pdo);
 
-if (!array_key_exists('PATH_INFO',$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
+$routes = require_once __DIR__ . '/../config/routes.php';
 
-    $controller = new VideoListController($videoRepository);
+//Se não existir será barra
+$pathInfo = $_SERVER['PATH_INFO'] ?? '/';
 
+$httpMethod =   $_SERVER['REQUEST_METHOD'];
 
-} elseif ($_SERVER['PATH_INFO'] === '/novo-video') {
+$key = "$httpMethod|$pathInfo";
 
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if (array_key_exists($key,$routes)) {
 
-        $controller = new NewVideoFormController($videoRepository);
+    //Ira retornar o nome da classe, pois em route usamos ::class
+    $controllerClass = $routes["$httpMethod|$pathInfo"];
 
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $controller = new $controllerClass($videoRepository);
+} else {
 
-        $controller = new NewVideoController($videoRepository);
-
-    }
-} elseif ($_SERVER['PATH_INFO'] === '/editar-video') {
-
-    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-        $controller = new VideoFormController($videoRepository);
-
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $controller = new EditVideoController($videoRepository);
-
-    }
- }elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
-
-    $controller = new DeleteVideoController($videoRepository);
-
-}else {
     http_response_code(404);
 }
 
