@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 
 ?>
 
-<?php require_once 'inicioHtml.php'?>
+<?php require_once 'inicioHtml.php' ?>
 
     <main class="container">
 
@@ -49,4 +49,4 @@ if (isset($_GET['id'])) {
 
     </main>
 
-<?php require_once 'fimHtml.php'?>
+<?php require_once 'fimHtml.php' ?>

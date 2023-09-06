@@ -1,16 +1,23 @@
-<?php require_once 'inicioHtml.php' ?>
+<?php use Alura\Mvc\Entity\Video;
 
-    <ul class="videos__container" alt="videos alura">
+require_once 'inicioHtml.php'
 
-        <?php
-            foreach ($videoList as $video):
+/** @var Video[] $videoList */
+
+//Fechando a tag pois tudo abaixo sera php
+?>
+
+<ul class="videos__container" alt="videos alura">
+
+    <?php
+    foreach ($videoList as $video):
         ?>
 
         <li class="videos__item">
             <iframe width="100%" height="72%" src="<?php echo $video->url;?>"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             <div class="descricao-video">
                 <img src="img/logo.png" alt="logo canal alura">
                 <h3><?php echo $video->title?></h3>
@@ -20,7 +27,7 @@
                 </div>
             </div>
         </li>
-        <?php endforeach;?>
-    </ul>
+    <?php endforeach;?>
+</ul>
 
-<?php require_once 'fimHtml.php' ?>
+<?php require_once __DIR__ . 'fimHtml.php';
