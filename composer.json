@@ -1,0 +1,20 @@
+{
+  "name": "gustavo/desafiocofre",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "gustavo",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Projeto\\Cofre\\": "src/"
+    }
+  }
+}
