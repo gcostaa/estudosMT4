@@ -50,13 +50,6 @@ $data = [
             "username" => "admin",
             "senha" => "senha@123",
             "idDispositivo" => 2
-        ],
-
-        [
-            "idCredencial"=>3,
-            "username" => "acesso",
-            "senha" => "senha@123",
-            "idDispositivo" => 3
         ]
     ],
 
@@ -92,7 +85,7 @@ $data = [
             "idModelo" => 1,
             "nome" => "Windows 11",
             "tipo" => "Server",
-            "idfabricante" => 1
+            "idFabricante" => 1
         ]
     ],
 
