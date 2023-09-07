@@ -1,0 +1,32 @@
+usuario
+    username
+    email
+    password
+
+equipamento
+    ip string
+    hostname string
+    conectividade string
+    modelo int
+
+modelo
+    nome string
+    tipo string
+    fabricante string
+
+credencial
+    username string
+    password string
+    equipamento int
+
+relatorio de dispositivos
+ações:
+    connectar
+    novo
+    atualizar
+    inativar
+
+relatorio de credenciais
+    novo
+    atualizar
+    inativar
