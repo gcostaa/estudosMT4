@@ -8,6 +8,6 @@ class Connection
 {
     public static function connectionCreator()
     {
-        return new PDO("mysql:host=192.168.100.37;dbname=cofre","gustavo","mT4SeG@s2s");
+        return new PDO("mysql:host=127.0.0.1;dbname=cofre","service","mT4SeG@s2s");
     }
 }

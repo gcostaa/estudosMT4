@@ -12,11 +12,32 @@ class Credencial
     private string $senha;
     private Dispositivo $dispositivo;
 
-    public function __construct(int $idCredencial, string $username, string $senha)
+    public function __construct(string $username, string $senha, Dispositivo $dispositivo)
     {
-        $this->idCredencial = $idCredencial;
         $this->username = $username;
         $this->senha = $senha;
+        $this->dispositivo = $dispositivo;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getSenha(): string
+    {
+        return $this->senha;
+    }
+
+    public function getDispositivo(): Dispositivo
+    {
+        return $this->dispositivo;
+    }
+
+
+    public function setIdCredencial(int $id)
+    {
+        $this->idCredencial = $id;
     }
 
 }

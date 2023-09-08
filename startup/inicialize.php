@@ -64,8 +64,6 @@ function insertConectividade(array $conectividades, PDO $pdo)
 {
     $queryInsert = "INSERT INTO conectividade(idConectividade,protocolo,porta) VALUES (?,?,?)";
 
-    foreach ($conectividades as $conectividade)
-    {
         $stmt = $pdo->prepare($queryInsert);
         $stmt->bindValue(1,$conectividade['idConectividade']);
         $stmt->bindValue(2,$conectividade['protocolo']);
@@ -74,7 +72,6 @@ function insertConectividade(array $conectividades, PDO $pdo)
         $status = $stmt->execute();
 
         echo $status . PHP_EOL;
-    }
 }
 
 function insertModelo(array $modelos, PDO $pdo)

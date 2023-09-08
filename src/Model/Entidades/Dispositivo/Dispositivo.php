@@ -14,13 +14,38 @@ class Dispositivo
     private Conectividade $conectividade;
     private Modelo $modelo;
 
-    public function __construct(int $idDispositivo, string $ip, string $hostname, Conectividade $conectividade, Modelo $modelo)
+    public function __construct(string $ip, string $hostname, Conectividade $conectividade, Modelo $modelo)
     {
-        $this->idDispositivo = $idDispositivo;
         $this->ip = $ip;
         $this->hostname = $hostname;
         $this->conectividade = $conectividade;
         $this->modelo = $modelo;
     }
+
+    public function getIp(): string
+    {
+        return $this->ip;
+    }
+
+    public function getHostname(): string
+    {
+        return $this->hostname;
+    }
+
+    public function getConectividade(): Conectividade
+    {
+        return $this->conectividade;
+    }
+
+    public function getModelo(): Modelo
+    {
+        return $this->modelo;
+    }
+
+    public function setIdDispositivos(int $id)
+    {
+        $this->idDispositivo = $id;
+    }
+
 
 }

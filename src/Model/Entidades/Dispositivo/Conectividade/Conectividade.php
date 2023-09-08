@@ -8,11 +8,32 @@ class Conectividade
     private string $protocolo;
     private int $porta;
 
-    public function __construct(int $idConectividade, string $protocolo, int $porta)
+    public function __construct(string $protocolo, int $porta)
     {
-        $this->idConectividade = $idConectividade;
         $this->protocolo = $protocolo;
         $this->porta = $porta;
+    }
+
+    public function getProtocolo(): string
+    {
+        return $this->protocolo;
+    }
+
+    public function getPorta(): int
+    {
+        return $this->porta;
+    }
+
+    public function setIdConectividade(int $id)
+    {
+
+        $this->idConectividade = $id;
+
+    }
+
+    public function getIdConectividade(): int
+    {
+        return $this->idConectividade;
     }
 
 
