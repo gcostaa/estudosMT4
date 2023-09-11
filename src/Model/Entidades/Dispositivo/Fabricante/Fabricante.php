@@ -38,13 +38,14 @@ class Fabricante
 
         $dataListOfObject = [];
 
-        foreach ($dataList as $data)
-        {
-            $dataListOfObject = new self(
-                $data['nome'],
-                $data['idFabricante']
-            );
+            foreach ($dataList as $data)
+            {
+                $dataListOfObject = new self(
+                    $data['nome'],
+                    $data['idFabricante']
+                );
         }
+
         return $dataListOfObject;
     }
 

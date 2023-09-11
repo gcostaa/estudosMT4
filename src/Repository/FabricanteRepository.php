@@ -33,11 +33,20 @@ class FabricanteRepository
 
     }
 
+    /**
+     * @return Fabricante
+     */
     public function all()
     {
 
-        return Fabricante::createsTheDatabaseSelectObject(GenericOperations::allFrom("fabricante",$this->pdo));
+        return Fabricante::createsTheDatabaseSelectObject(GenericOperations::allFrom('fabricante',$this->pdo));
 
+    }
+
+    public function oneFabricante(int $id)
+    {
+        return Fabricante::createsTheDatabaseSelectObject(GenericOperations::onlyOneOf('fabricante',$id,$this->pdo)
+        );
     }
 
 }

@@ -4,6 +4,7 @@ use Projeto\Cofre\Infraestrutura\Connection;
 use Projeto\Cofre\Model\Entidades\Dispositivo\Conectividade\Conectividade;
 use Projeto\Cofre\Model\Entidades\Dispositivo\Fabricante\Fabricante;
 use Projeto\Cofre\Model\Entidades\Dispositivo\Modelo\Modelo;
+use Projeto\Cofre\Repository\ConectividadeRepository;
 use Projeto\Cofre\Repository\DispositivoRepository;
 use Projeto\Cofre\Repository\FabricanteRepository;
 use Projeto\Cofre\Repository\UsuarioRepository;
@@ -25,8 +26,12 @@ $dispositivo = new \Projeto\Cofre\Model\Entidades\Dispositivo\Dispositivo(
 
 //$repodisp = new UsuarioRepository(Connection::connectionCreator());
 //var_dump($repodisp->remove(3));
-$repocred = new FabricanteRepository(Connection::connectionCreator());
-$result = $repocred->all();
+/*$repocred = new FabricanteRepository(Connection::connectionCreator());
+$result = $repocred->oneFabricante(1);*/
+
+$repo = new \Projeto\Cofre\Repository\ModeloRepository(Connection::connectionCreator());
+$result = $repo->all();
+var_dump($result);
 //echo $result->getNomeFabricante();
 
 //var_dump($dispositivo->getConectividade()->getPorta());

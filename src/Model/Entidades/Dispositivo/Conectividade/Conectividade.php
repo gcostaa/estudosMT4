@@ -9,10 +9,15 @@ class Conectividade
     private string $protocolo;
     private int $porta;
 
-    public function __construct(string $protocolo, int $porta)
+    public function __construct(string $protocolo, int $porta, ?int $idConectividade)
     {
         $this->protocolo = $protocolo;
         $this->porta = $porta;
+
+        if (isset($idConectividade))
+        {
+            $this->setIdConectividade($idConectividade);
+        }
     }
 
     public function getProtocolo(): string
@@ -37,5 +42,20 @@ class Conectividade
         return $this->idConectividade;
     }
 
+    public static function createsTheDatabaseSelectObject(array $dataList): Conectividade
+    {
+
+        $dataListOfObject = [];
+
+        foreach ($dataList as $data)
+        {
+            $dataListOfObject = new self(
+                $data['protocolo'],
+                $data['porta'],
+                $data['idConectividade']
+            );
+        }
+        return $dataListOfObject;
+    }
 
 }

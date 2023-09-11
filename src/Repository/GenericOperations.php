@@ -33,4 +33,24 @@ final class GenericOperations
 
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public static function onlyOneOf(string $class, int $id, \PDO $pdo): array
+    {
+        $quey = "SELECT * FROM $class WHERE id".ucfirst($class)."=?";
+
+        $stmt = $pdo->prepare($quey);;
+
+        $stmt = $pdo->prepare($quey);
+        $stmt->bindValue(1,$id);
+
+        $status = $stmt->execute();
+
+        if (!$status)
+        {
+            //tratar erros no futuro
+            echo "Error";
+        }
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

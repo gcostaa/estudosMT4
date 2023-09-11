@@ -38,4 +38,11 @@ class ConectividadeRepository
 
     }
 
+    public function all()
+    {
+
+        return Conectividade::createsTheDatabaseSelectObject(GenericOperations::allFrom("conectividade",$this->pdo));
+
+    }
+
 }

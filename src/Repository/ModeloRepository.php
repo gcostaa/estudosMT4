@@ -36,4 +36,9 @@ class ModeloRepository
         return GenericOperations::removeFrom("modelo",$id,$this->pdo);
 
     }
+
+    public function all()
+    {
+        return Modelo::createsTheDatabaseSelectObject(GenericOperations::allFrom("modelo",$this->pdo),$this->pdo);
+    }
 }
