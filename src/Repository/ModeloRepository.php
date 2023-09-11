@@ -29,4 +29,11 @@ class ModeloRepository
             return $status;
 
     }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("modelo",$id,$this->pdo);
+
+    }
 }

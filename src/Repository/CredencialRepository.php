@@ -30,4 +30,18 @@ class CredencialRepository
 
             return $status;
     }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("credencial",$id,$this->pdo);
+
+    }
+
+    public function all()
+    {
+        //Para que não seja necessário instanciar uma credencial
+        return Credencial::createsTheDatabaseSelectObject(GenericOperations::allFrom('credencial',$this->pdo));
+
+    }
 }

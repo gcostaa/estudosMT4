@@ -29,4 +29,11 @@ class DispositivoRepository
 
             return $status;
         }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("dispositivo",$id,$this->pdo);
+
+    }
 }

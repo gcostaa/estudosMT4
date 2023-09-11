@@ -30,4 +30,11 @@ class UsuarioRepository
 
             return $status;
     }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("usuario",$id,$this->pdo);
+
+    }
 }

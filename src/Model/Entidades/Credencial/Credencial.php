@@ -40,4 +40,26 @@ class Credencial
         $this->idCredencial = $id;
     }
 
+    /**
+     * @return Credencial[]
+     */
+    public static function createsTheDatabaseSelectObject(array $dataList): array
+    {
+
+        $dataListOfObject = [];
+
+        foreach ($dataList as $data)
+        {
+            $dataListOfObject = new self(
+                $data['username'],
+                $data['senha'],
+                $data['idDispositivo']
+            );
+
+            self::setIdCredencial($data['idCredencial']);
+        }
+
+        return $dataListOfObject;
+    }
+
 }

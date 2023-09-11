@@ -9,6 +9,7 @@ class ConectividadeRepository
 {
 
 
+
     public function __construct(private PDO $pdo)
     {
     }
@@ -27,6 +28,13 @@ class ConectividadeRepository
         $conectividade->setIdConectividade($this->pdo->lastInsertId());
 
         return $status;
+
+    }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("conectividade",$id,$this->pdo);
 
     }
 

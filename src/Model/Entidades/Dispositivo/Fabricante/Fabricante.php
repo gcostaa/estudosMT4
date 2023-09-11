@@ -8,9 +8,14 @@ class Fabricante
     private readonly int $idFabricante;
     private string $nomeFabricante;
 
-    public function __construct(string $nomeFabricante)
+    public function __construct(string $nomeFabricante, ?int $idFabricante)
     {
         $this->nomeFabricante = $nomeFabricante;
+
+        if (isset($idFabricante))
+        {
+            $this->setIdFabricante($idFabricante);
+        }
     }
 
     public function getNomeFabricante(): string
@@ -28,5 +33,19 @@ class Fabricante
         return $this->idFabricante;
     }
 
+    public static function createsTheDatabaseSelectObject(array $dataList): Fabricante
+    {
+
+        $dataListOfObject = [];
+
+        foreach ($dataList as $data)
+        {
+            $dataListOfObject = new self(
+                $data['nome'],
+                $data['idFabricante']
+            );
+        }
+        return $dataListOfObject;
+    }
 
 }

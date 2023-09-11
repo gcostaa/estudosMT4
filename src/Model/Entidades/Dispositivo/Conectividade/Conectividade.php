@@ -2,7 +2,6 @@
 
 namespace Projeto\Cofre\Model\Entidades\Dispositivo\Conectividade;
 
-use Projeto\Cofre\Model\Entidades\Domain;
 
 class Conectividade
 {

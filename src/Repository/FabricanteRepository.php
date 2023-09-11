@@ -25,4 +25,19 @@ class FabricanteRepository
             return $status;
 
         }
+
+    public function remove(int $id)
+    {
+
+        return GenericOperations::removeFrom("fabricante",$id,$this->pdo);
+
+    }
+
+    public function all()
+    {
+
+        return Fabricante::createsTheDatabaseSelectObject(GenericOperations::allFrom("fabricante",$this->pdo));
+
+    }
+
 }
